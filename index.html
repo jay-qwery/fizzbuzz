@@ -9,9 +9,10 @@
 <body>
     <div>
         <div id="main">
-            <label>Input a number: </label>
+            <label>Input a number above 1: </label>
             <input id="number" type="number">
             <input type="submit" value="Submit">
+            <p id="para"></p>
         </div>
     </div>
 
@@ -24,30 +25,47 @@
         // All numbers divisible by both 3 and 5 will output Fizzbuzz
         //Print numbers to p element
 
-        const main = document.getElementById("main");
+        const para = document.getElementById('para');
         const submit = document.querySelectorAll('input')[1];
-        
 
-        submit.addEventListener("click", executeFizzbuzz);
+        submit.addEventListener('click', executeFizzbuzz);
 
         function executeFizzbuzz() {
-            const number = document.getElementById("number").value;
+            clearResults();
 
-            getNumbers(number);
+            let number = document.getElementById('number').value;
+
+            if (number < 1) {
+                para.innerText = "Numbers above 1 only :)";
+            }
+            else if (isFloat(number)) { 
+                para.innerText += number + " was rounded to " + roundFloat(number) + "\n" + "\n";
+                getNumbers(roundFloat(number));
+            } else {
+                getNumbers(number);
+            }
+        }
+
+        function isFloat(number) {
+            return number % 1 !== 0;
+        }
+
+        function roundFloat(number) {
+            return number = Math.round(number);    
         }
 
         function getNumbers(number) {
             // for every integer between 1 and number
-            for (let integer = 1; integer <= number; integer++) {
-                console.log(integer);
-                
-                const para = document.createElement('p');
-                para.textContent = integer.toString();
-                main.append(para);
+            for (let i = 1; i <= number; i++) {
+                para.innerText += i.toString() + "\n";
             }
             // (I think if number is not an integer I will round it up or down and say "[number] was rounded up/down to [new number]")
 
             // check if integer is divisible by 3, 5, or 3 and 5
+        }
+
+        function clearResults() {
+            para.innerText = "";
         }
 
     </script>
