@@ -17,14 +17,6 @@
     </div>
 
     <script>
-        //PSEUDO CODE:
-        //User inputs number and submits
-        //Get all numbers from 1 to number
-        //All numbers divisible by 3 (remainder 0) will output Fizz
-        //All numbers divisible by 5 (remainder 0) will output Buzz
-        // All numbers divisible by both 3 and 5 will output Fizzbuzz
-        //Print numbers to p element
-
         const para = document.getElementById('para');
         const submit = document.querySelectorAll('input')[1];
 
@@ -55,19 +47,22 @@
         }
 
         function getNumbers(number) {
-            // for every integer between 1 and number
             for (let i = 1; i <= number; i++) {
-                para.innerText += i.toString() + "\n";
+                if (i % 3 === 0 && i % 5 === 0) {
+                    para.innerText += "FizzBuzz" + "\n";
+                } else if (i % 3 === 0) {
+                    para.innerText += "Fizz" + "\n";
+                } else if (i % 5 === 0) {
+                    para.innerText += "Buzz" + "\n";
+                } else {
+                    para.innerText += i.toString() + "\n";
+                }
             }
-            // (I think if number is not an integer I will round it up or down and say "[number] was rounded up/down to [new number]")
-
-            // check if integer is divisible by 3, 5, or 3 and 5
         }
 
         function clearResults() {
             para.innerText = "";
         }
-
     </script>
 </body>
 </html>
