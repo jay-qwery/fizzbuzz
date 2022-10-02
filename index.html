@@ -10,7 +10,7 @@
     <div>
         <div id="main">
             <label>Input a number: </label>
-            <input type="number">
+            <input id="number" type="number">
             <input type="submit" value="Submit">
         </div>
     </div>
@@ -25,17 +25,31 @@
         //Print numbers to p element
 
         const main = document.getElementById("main");
-        const input = document.querySelectorAll('input')[0];
         const submit = document.querySelectorAll('input')[1];
-        const para = document.createElement('p');
-
-        main.append(para);
+        
 
         submit.addEventListener("click", executeFizzbuzz);
 
         function executeFizzbuzz() {
-            para.textContent = "FizzBuzz executed";
+            const number = document.getElementById("number").value;
+
+            getNumbers(number);
         }
+
+        function getNumbers(number) {
+            // for every integer between 1 and number
+            for (let integer = 1; integer <= number; integer++) {
+                console.log(integer);
+                
+                const para = document.createElement('p');
+                para.textContent = integer.toString();
+                main.append(para);
+            }
+            // (I think if number is not an integer I will round it up or down and say "[number] was rounded up/down to [new number]")
+
+            // check if integer is divisible by 3, 5, or 3 and 5
+        }
+
     </script>
 </body>
 </html>
